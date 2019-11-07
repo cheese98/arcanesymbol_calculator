@@ -73,7 +73,7 @@ int main(){
     for(i=0;i<6;i++){
         time[i] = sym[i].calcTime();
         meso[i] = sym[i].calcMeso();
-        if(time[i] > max) max = time[i];
+        if(time[i] > max_date) max_date = time[i];
     }
 	for(i=0;i<6;i++){
         cout << map_name[i] << endl;
@@ -81,4 +81,7 @@ int main(){
 	    cout << "업그레이드 금액 : " << meso[i] << "메소" << endl;
     }
 
+	cout << endl << "업그레이드 금액 합계 : " << meso_sum << endl;
+	cout << "최대 소요 시간" << max_date << endl;
+	return 0;
 }
