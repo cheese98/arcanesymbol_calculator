@@ -1,50 +1,17 @@
 #include<iostream>
 #include<cmath>
+#include "Symbol.cpp"
 using namespace std;
 char map_name[6][20]={"소멸의 여로", "츄츄 아일랜드", "레헬른", "아르카나", "모라스", "에스페라"};
 int price[20], price0[20], need[20];
 
-class Symbol{
-private:
-	int level, exp, daily, goal, type;
-public:
-	void setValue(int _level, int _exp, int _daily, int _goal, int _type){
-		level = _level;
-		exp = _exp;
-		daily = _daily;
-		goal = _goal;
-		type = _type;
+void DefinePrice(){
+	for(int i=1;i<20;i++){
+		price[i]=12440000+i*6600000;
+		price0[i]=2370000+i*7130000;
+		need[i]=i*i+11;
 	}
-	int getLevel(){
-		return level;
-	}
-	int getExp(){
-		return exp;
-	}
-	int calcTime(){
-		int i, exp_sum = 0;
-		for(i=level; i<goal;i++){
-			exp_sum+= need[i];
-		}
-		exp_sum -= exp;
-		return ceil((double)exp_sum/daily);
-	}
-	long long calcMeso(){
-		int i;
-		long long meso_sum = 0;
-		if(type == 0){
-			for(i=level; i<goal;i++){
-				meso_sum += price0[i];
-			}
-		}
-		else{
-			for(i=level; i<goal;i++){
-				meso_sum += price[i];
-			}
-		}
-		return meso_sum;
-	}
-};
+}
 
 int main(){
 	Symbol sym[6];
@@ -52,11 +19,7 @@ int main(){
     int time[6];
 	long long meso[6] ={0}, meso_sum = 0;
 
-    for(i=1;i<20;i++){
-		price[i]=12440000+i*6600000;
-		price0[i]=2370000+i*7130000;
-		need[i]=i*i+11;
-	}
+	DefinePrice();
 
 	for(i=0;i<6;i++){
 		cout << map_name[i] << endl;
